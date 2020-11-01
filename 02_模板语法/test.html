@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'>
+        <h2>1.双大括号表达式 | 插值</h2>
+        <p>----{{msg}}-----</p>
+        <p>------{{msg.toUpperCase()}}-----</p>
+        <p>----{{msg.toUpperCase()}}------</p>
+
+        <h2>2,指令一: 强制数据绑定</h2>   <!--属性值是一个动态值-->
+        <a href="url">去学习</a><br>
+        <a v-bind:href="url">去学习</a><br>
+        <a :href="url">去学习</a>   <!--在属性名的左边加上一个 : -->
+
+
+        <h2>3, 指令二: 绑定事件监听</h2>
+        <button v-on:click = "test">test1</button>
+        <button @click="test">test1</button>   <!--指令语法 在属性名的左边加上一个 @ -->
+        
+        <!--
+            监视/监听 : 回调函数  (一旦说到监视/监听,必然有回调函数 )
+        -->
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data:{
+                msg : "I Will Back !",
+                url: "https://www.bilibili.com/video/BV1LV411z72g?p=93",
+            },
+
+            methods: {
+                test(){
+                    alert(event.target.innerText)
+                }
+            },
+        })
+
+
+        function fn(){} //函数是语句
+
+        var fn = function (params) {  //函数是表达式
+            
+        }
+
+
+
+        /*
+        1,表达式不是一个完整的结构,需要与其他结构配置才能正常存在,而语句是可以独立存在的
+        2,表达式返回一个数据结构,语句不会返回一个结果(是去做一个特定工作的)
+        
+        
+        */
+
+    </script>
+</body>
+</html>
