@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="test">
+        <input type="text" v-model = "msg">
+        <p>hello {{msg}}</p>
+    </div>
+
+    <!--
+        模板页面: html + js
+        js以什么形式存在?
+        指令: vue自定义标签属性(以 v- 开头),属性值是一个js的表达式 v-model = "msg"
+        插值: 双大括号表达式,动态显示数据 {{msg}}
+
+        数据绑定:
+            单向的  数据流向: data ==> template页面
+            双向的:
+                数据流向:  data  <==> template 页面
+            
+        理解vue的MVVM
+            M: model ==> plain JavaScript object
+            V: view ==>  DOM
+            VM : ViewModel
+
+        
+    -->
+
+    <script src="../js/vue.js"></script>
+
+    <script>
+        const vm = new Vue({  //配置对象: 属性名是一些特定的名称,每个属性就是一个选项
+            el: '#test',  //选择器字符串 ==> 用于指定模板的根元素
+            data: {  //包含一些数据属性的对象 ==> 为模板提供数据
+                msg : "zook"
+            }
+
+        });
+
+
+        setTimeout(() => {
+            vue.msg = 'hh'
+        }, 100000);
+
+
+
+    </script>
+
+</body>
+</html>
