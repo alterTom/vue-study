@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id='demo'>
+        姓:<input type="text" v-model="firstName"><br>
+        名:<input type="text" v-mode="lastName"><br>
+        姓名1(单向): <input type="text" v-model="fullName1"><br>
+        姓名2(单向): <input type="text" v-model="fullName2"><br>
+        姓名3(双向): <input type="text" v-model="fullName3"><br>
+        
+        <p>{{fullName}}</p>
+        <p>{{fullName1}}</p>
+        <p>{{fullName2}}</p>
+        <p>{{fullName3}}</p>
+
+
+    </div>
+    
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+
+    /*
+        Object.defineProperty()
+        方法会直接在一个对象上定义一个新属性,或者修改一个对象的现有属性
+
+        get(){return value}   //getter 属性的get方法
+        set(value){}     //setteer  属性的set方法
+
+    */
+
+    const p = {
+        firstName: "A",
+        lastName: "B"
+    }
+
+    /*
+        需求: 给p添加一个新的属性,fullName = firstName + '-' + lastName
+        如果修改了firstName/lastName, fullName 自动改变为对应的值
+        如果修改了fullName,firstName 和lastName 也自动改变为对应的值
+    */
+
+    Object.defineProperty(p,'fullName',{ //配置对象==>属性描述符
+        /*
+            当读取属性值的时候自动调用,将函数的返回值作为属性值
+            this就是属性所在的对象
+        */
+        get(){
+            console.log("get()");
+            return this.firstName + '-' + this.lastName;
+        },
+
+        /*
+            当修改了属性值的时候自动调用,用来监视属性值的变化,this是属性所在的对象
+
+        */
+        set(value){  //value是fullName最新的值
+            console.log("set()",value);
+            const names = value.split("-");
+            this.firstName = names[0];
+            this.lastName = names[1];
+        }
+
+    })
+
+    
+    console.log(p.fullName);
+
+
+    p.firstName = 'C';
+    p.lastName = 'D';
+    console.log(p.fullName);
+
+    p.fullName = 'E-F';  //导致对应的set调用
+    console.log(p.firstName,p.lastName);
+
+    /*
+        关于回调函数的3个问题
+        1,函数什么时候执行
+        2,用来做什么的
+        3,this是谁
+    */
+
+
+
+
+    </script>
+ 
+</body>
+</html>
