@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="example">
+        <h2>1.绑定监听</h2>
+        <buttom @click="test1">test11</buttom>
+
+        <buttom @click="test2('zook')">test22</buttom>
+
+        <buttom @click="test3('zook',$event)">test33</buttom>
+        <buttom @click="($event) => {test3('zook',$event)}">test33</buttom>  <!--同上-->
+
+        <h2>2.事件修饰</h2>
+            <!--
+                事件处理的2个重要操作
+                1,阻止事件的默认行为
+                2,停止事件冒泡
+            -->
+            <a href="https://www.bilibili.com/video/BV1LV411z72g?p=94" @click.prevent="test4">去学习</a>
+
+            <div style="width: 200px; height: 100px; background-color: red;" @click=test5>
+                <div style="width: 100px; height: 50px; background-color: blue;" @click.stop="test6"></div>
+            </div>
+
+            <button @click.once="test7">test</button>
+
+
+        <h2>3.按键修饰</h2>
+            <input type="text" v-model="msg" @keyup.enter="test8">
+
+
+    </div>
+
+
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#example',
+            data:{
+
+            },
+
+            methods: {
+                test1(event){
+                    alert(event.target.innerHTML)
+                },
+
+                test2(name){
+                    alert(name);
+                },
+
+                test3(name,event){
+                    alert(name + '-' + event.target.innerHTML)
+                },
+
+                test4(event){
+                    //event.preventDefault();
+                    
+                    alert("点击了链接");
+
+                },
+
+                test5(){
+                    alert("out");
+                },
+                
+                test6(){
+                    alert("inner")
+                },
+                test7(){
+                    alert("once")
+                },
+
+                test8(event){
+                    //按下enter键
+                    // if(event.keyCode === 13){
+                    //     alert(this.msg)
+                    // }
+                    alert(this.msg)
+                    
+                }
+            },
+
+
+        })
+    </script>
+
+</body>
+</html>

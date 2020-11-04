@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+        <h2>class与style绑定</h2>
+        <p :class="myClass">aaaa</p>  <!--类名不确定-->
+        <p :class="{classA:hasA, classB:hasB}">bbbb</p>   <!--什么时候用对象形式??类名却确定,但不确定有没有-->
+        <p :class="['classA','classB']">ccccc</p>
+
+        <button @click="update">更新</button>
+
+        <h2>style 绑定</h2>
+        <p :style="{color: activeColor,fontSize}">aaaa</p>
+    
+
+    </div>
+
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+    <script type="text/javascript">
+        new Vue({
+            data:{
+                myClass : 'classA',
+                hasA: false,
+                hasB: true,
+                activeColor: 'red',
+                fontSize: '100px'
+
+            },
+
+            methods: {
+                update(){
+                    this.myClass = "classB";
+                    this.hasA = !this.hasA;
+                    this.hasB = !this.hasB;
+                    this.activeColor = '#aaa';
+                    this.fontSize = "30px"
+                }
+            },
+
+
+        }).$mount('#demo')
+
+
+    </script>
+
+
+</body>
+</html>
