@@ -76,3 +76,5 @@
                 handler: fun(value)
             }
         另一种添加监听方式: vm.$watch('xxx',func)
+
+
