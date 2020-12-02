@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <div id="test">
+        <p v-my-directive='msg'></p>
+    </div>
+
+    
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script src="./vue-myPlugins.js"></script>
+    <script type="text/javascript">
+        //声明使用插件
+        Vue.use(MyPlugin)
+
+        Vue.myGlobalMethod()
+        const vm = new Vue({
+            el:"#test",
+            data(){
+                return{
+                    msg:'abcd'
+                }
+            }
+        })
+        vm.$myMethod();
+    </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
